@@ -18,7 +18,9 @@ there is some notes in using this package, you have to make the scrolled element
 //parent element
 <div style={{ display: "flex", flexDirection: "column" }}>
   //element that is scrollable
-  <div>//...</div>
+  <div>
+  //...items in scrolled element
+  </div>
   //Here we put the scrollbar
   <ScrollbarX />
 </div>
@@ -30,7 +32,9 @@ there is some notes in using this package, you have to make the scrolled element
 //parent element
 <div style={{ display: "flex", flexDirection: "row" }}>
   //element that is scrollable
-  <div>//...</div>
+  <div>
+  //...items in scrolled element
+  </div>
   //Here we put the scrollbar
   <ScrollbarY />
 </div>
