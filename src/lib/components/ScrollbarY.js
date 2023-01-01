@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 function ScrollbarY({
-  h = 180,
+  h = 90,
   w = "6px",
   r = "0px",
   thumbColor = "#555",

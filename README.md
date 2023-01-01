@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# styled-scrollbar
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+styled-scrollbar helps you make customized(color, width, ...) scrollbars in react projects!
 
-## Available Scripts
+## Quick start
 
-In the project directory, you can run:
+First, run `npm install styled-scrollbar` for your app. Then, in an React app:
 
-### `npm start`
+```js
+import { ScrollbarX } from "styled-scrollbar";
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+there is some notes in using this package, you have to make the scrolled element and Scrollbar **childs** of a **FLEXED PARENT** , here we see:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Horizontal scrollbar:
 
-### `npm test`
+```js
+//parent element
+<div style={{ display: "flex", flexDirection: "column" }}>
+  //element that is scrollable
+  <div>//...</div>
+  //Here we put the scrollbar
+  <ScrollbarX />
+</div>
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Vertical scrollbar:
 
-### `npm run build`
+```js
+//parent element
+<div style={{ display: "flex", flexDirection: "row" }}>
+  //element that is scrollable
+  <div>//...</div>
+  //Here we put the scrollbar
+  <ScrollbarY />
+</div>
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+components props:
+| Scrollbar | flexDirection | `component` |
+| :----------- | :------------ | :----------- |
+| `Horizontal` | `column` | `ScrollbarX` |
+| `Vertical` | `row` | `ScrollbarY` |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+**guide for flexDirection:**
+| Scrollbar | flexDirection | component |
+| :----------- | :------------ | :----------- |
+| `Horizontal` | `column` | `ScrollbarX` |
+| `Vertical` | `row` | `ScrollbarY` |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Component Props guide:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**colors Props:**
+| Prop | default | data type | meaning|  
+| :------|:- | :------- | :-------
+| `trackColor`| ![#cecece](https://via.placeholder.com/10/cecece?text=+)`#cecece` | `string` | `color of scrollbar background` |
+| `thumbColor` | ![#555](https://via.placeholder.com/10/555?text=+)`#555` | `string` | `color of scrollbar thumb` |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**sizes Props:**
+| Prop | data type | meaning |
+| :--- | :-------- | :-------------------- |
+| `w` | `number` | `width of scrollbar` |
+| `h` | `number` | `height of scrollbar` |
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| type         | default width(px) | default height(px) |
+| :----------- | :---------------- | :----------------- |
+| `ScrollbarX` | `180`             | `6`                |
+| `ScrollbarY` | `6`               | `90`               |

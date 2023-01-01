@@ -10,7 +10,7 @@ var _react = require("react");
 var _jsxRuntime = require("react/jsx-runtime");
 function ScrollbarY(_ref) {
   let {
-    h = 180,
+    h = 90,
     w = "6px",
     r = "0px",
     thumbColor = "#555",
