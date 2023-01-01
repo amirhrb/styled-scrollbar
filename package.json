@@ -1,0 +1,31 @@
+{
+  "name": "styled-scrollbar",
+  "version": "1.0.0",
+  "description": "scrollbars-xy is a React library to make vertical and horizontal scrollbars look 'same' in different browsers.",
+  "main": "index.js",
+  "author": "Your Name amirrabi70@gmail.com",
+  "license": "MIT",
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amirhrb/scrollbars-xy.git"
+  },
+  "keywords": [
+    "scrollbar",
+    "react",
+    "overflow"
+  ],
+  "bugs": {
+    "url": "https://github.com/amirhrb/scrollbars-xy/issues"
+  },
+  "homepage": "https://github.com/amirhrb/scrollbars-xy#readme",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
