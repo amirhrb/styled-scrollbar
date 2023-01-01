@@ -7,6 +7,7 @@ exports.default = void 0;
 require("core-js/modules/web.dom-collections.iterator.js");
 require("core-js/modules/es.number.to-fixed.js");
 var _react = require("react");
+var _jsxRuntime = require("react/jsx-runtime");
 function ScrollbarX(_ref) {
   let {
     w = 180,
@@ -35,24 +36,25 @@ function ScrollbarX(_ref) {
       });
     });
   }, []);
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
     ref: barRef,
     style: {
       width: w,
       height: h,
       borderRadius: r,
       backgroundColor: trackColor
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      width: w * thumbOnTrack,
-      position: "relative",
-      right: w * (1 - thumbOnTrack) * scrolledRatio,
-      height: h,
-      borderRadius: r,
-      backgroundColor: thumbColor
-    }
-  }));
+    },
+    children: /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+      style: {
+        width: w * thumbOnTrack,
+        position: "relative",
+        right: w * (1 - thumbOnTrack) * scrolledRatio,
+        height: h,
+        borderRadius: r,
+        backgroundColor: thumbColor
+      }
+    })
+  });
 }
 var _default = ScrollbarX;
 exports.default = _default;
