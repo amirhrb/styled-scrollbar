@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amirhrb/scrollbars-xy.git"
+    "url": "git+https://github.com/amirhrb/styled-scrollbar.git"
   },
   "keywords": [
     "scrollbar",
@@ -21,9 +21,9 @@
     "overflow"
   ],
   "bugs": {
-    "url": "https://github.com/amirhrb/scrollbars-xy/issues"
+    "url": "https://github.com/amirhrb/styled-scrollbar/issues"
   },
-  "homepage": "https://github.com/amirhrb/scrollbars-xy#readme",
+  "homepage": "https://github.com/amirhrb/styled-scrollbar#readme",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
