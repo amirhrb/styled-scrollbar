@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, memo } from "react";
+import PropTypes from "prop-types";
 
 function ScrollbarX({
   w = 180,
-  h = "6px",
-  r = "0px",
+  h = 6,
+  r = 0,
   thumbColor = "#555",
   trackColor = "#cecece",
 }) {
@@ -40,17 +41,35 @@ function ScrollbarX({
     <div
       ref={barRef}
       style={{
-        width: w,
+        display: thumbOnTrack >= 0.99 ? "none" : "block",
+        width: w
+          ? w
+          : barRef.current
+          ? barRef.current.previousSibling.clientWidth
+          : "90",
         height: h,
         borderRadius: r,
         backgroundColor: trackColor,
       }}
     >
+      {console.log(typeof scrolledRatio)}
       <div
         style={{
-          width: w * thumbOnTrack,
+          width: w
+            ? w * thumbOnTrack
+            : barRef.current
+            ? barRef.current.previousSibling.clientWidth * thumbOnTrack
+            : "30",
           position: "relative",
-          right: w * (1 - thumbOnTrack) * scrolledRatio,
+          right: w
+            ? Number(w * (1 - thumbOnTrack) * scrolledRatio)
+            : barRef.current && thumbOnTrack
+            ? Number(
+                barRef.current.previousSibling.clientWidth *
+                  (1 - thumbOnTrack) *
+                  scrolledRatio
+              )
+            : "30",
           height: h,
           borderRadius: r,
           backgroundColor: thumbColor,
@@ -59,4 +78,11 @@ function ScrollbarX({
     </div>
   );
 }
-export default ScrollbarX;
+ScrollbarX.propTypes = {
+  w: PropTypes.number,
+  h: PropTypes.number,
+  r: PropTypes.number,
+  thumbColor: PropTypes.string,
+  trackColor: PropTypes.string,
+};
+export default memo(ScrollbarX);
