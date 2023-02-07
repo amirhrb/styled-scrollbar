@@ -1,75 +1,91 @@
-import { useEffect, useRef, useState, memo } from "react";
-import PropTypes from "prop-types";
+import React, { useRef, useState, useEffect } from "react";
 
-function ScrollbarX({
-  w = 180,
-  h = 6,
-  r = 0,
-  thumbColor = "#555",
-  trackColor = "#cecece",
-}) {
-  const barRef = useRef();
+function Container(props) {
+  const ref = useRef(null);
+  const { children, ...data } = props;
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "space-evenly",
+      }}
+    >
+      {children}
+      <Scrollbar ref={ref} {...data} />
+    </div>
+  );
+}
+
+const Scrollbar = React.forwardRef((props, ref) => {
+  const {
+    w,
+    h = 6,
+    r = 2,
+    thumbColor = "#555",
+    trackColor = "#cecece",
+  } = props;
   const [{ scrolledRatio, thumbOnTrack }, setScroll] = useState({
     thumbOnTrack: 0,
     scrolledRatio: 0,
   });
   useEffect(() => {
     setScroll({
-      thumbOnTrack: Number(
-        barRef.current.previousSibling.clientWidth /
-          barRef.current.previousSibling.scrollWidth
+      thumbOnTrack: +(
+        ref.current.previousSibling.clientWidth /
+        ref.current.previousSibling.scrollWidth
       ).toFixed(2),
-      scrolledRatio: +(
-        -barRef.current.scrollLeft /
-        (barRef.current.scrollWidth - barRef.current.clientWidth)
+      scrolledRatio: Math.abs(
+        ref.current.previousSibling.scrollLeft /
+          (ref.current.previousSibling.scrollWidth -
+            ref.current.previousSibling.clientWidth)
       ).toFixed(2),
     });
 
-    barRef.current.previousSibling.addEventListener("scroll", (e) => {
+    ref.current.previousSibling.addEventListener("scroll", (e) => {
       setScroll({
         thumbOnTrack: Number(
           e.target.clientWidth / e.target.scrollWidth
         ).toFixed(2),
-        scrolledRatio: +(
-          -e.target.scrollLeft /
-          (e.target.scrollWidth - e.target.clientWidth)
+        scrolledRatio: Math.abs(
+          e.target.scrollLeft / (e.target.scrollWidth - e.target.clientWidth)
         ).toFixed(2),
       });
     });
   }, []);
   return (
     <div
-      ref={barRef}
+      ref={ref}
       style={{
-        display: thumbOnTrack >= 0.99 ? "none" : "block",
+        display: thumbOnTrack <= 0.99 ? "block" : "none",
         width: w
           ? w
-          : barRef.current
-          ? barRef.current.previousSibling.clientWidth
-          : "90",
+          : ref.current
+          ? ref.current.previousSibling.clientWidth
+          : 180,
         height: h,
         borderRadius: r,
         backgroundColor: trackColor,
       }}
     >
-      {console.log(typeof scrolledRatio)}
       <div
         style={{
           width: w
             ? w * thumbOnTrack
-            : barRef.current
-            ? barRef.current.previousSibling.clientWidth * thumbOnTrack
-            : "30",
+            : ref.current
+            ? ref.current.previousSibling.clientWidth * thumbOnTrack
+            : 30,
           position: "relative",
           right: w
             ? Number(w * (1 - thumbOnTrack) * scrolledRatio)
-            : barRef.current && thumbOnTrack
+            : ref.current && thumbOnTrack
             ? Number(
-                barRef.current.previousSibling.clientWidth *
+                ref.current.previousSibling.clientWidth *
                   (1 - thumbOnTrack) *
                   scrolledRatio
               )
-            : "30",
+            : 30,
           height: h,
           borderRadius: r,
           backgroundColor: thumbColor,
@@ -77,12 +93,14 @@ function ScrollbarX({
       ></div>
     </div>
   );
-}
-ScrollbarX.propTypes = {
-  w: PropTypes.number,
-  h: PropTypes.number,
-  r: PropTypes.number,
-  thumbColor: PropTypes.string,
-  trackColor: PropTypes.string,
-};
-export default memo(ScrollbarX);
+});
+export default Container;
+
+/*
+/provider ref=ref
+
+  //scrolled-child
+  //scrollbar
+
+/provider
+*/

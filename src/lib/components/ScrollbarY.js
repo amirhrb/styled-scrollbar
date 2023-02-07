@@ -1,72 +1,93 @@
-import { useEffect, useRef, useState, memo } from "react";
-import PropTypes from "prop-types";
+import React, { useRef, useState, useEffect } from "react";
 
-function ScrollbarY({
-  h,
-  w = 6,
-  r = 0,
-  thumbColor = "#555",
-  trackColor = "#cecece",
-}) {
-  const barRef = useRef();
-  const [thumRatio, setThumRatio] = useState(0);
-  const [scrolledRatio, setScrolledRatio] = useState(0);
-  const [prevHeight, setPrevheight] = useState(0);
+function Container(props) {
+  const ref = useRef(null);
+  const { children, ...data } = props;
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row-reverse",
+        alignItems: "center",
+        justifyContent: "space-evenly",
+      }}
+    >
+      {children}
+      <Scrollbar ref={ref} {...data} />
+    </div>
+  );
+}
+
+const Scrollbar = React.forwardRef((props, ref) => {
+  const {
+    h,
+    w = 6,
+    r = 2,
+    thumbColor = "#555",
+    trackColor = "#cecece",
+  } = props;
+  const [{ scrolledRatio, thumbOnTrack }, setScroll] = useState({
+    thumbOnTrack: 0,
+    scrolledRatio: 0,
+  });
   useEffect(() => {
-    const prevEl = barRef.current.previousSibling;
-    setThumRatio(prevEl.clientHeight / prevEl.scrollHeight);
-    setScrolledRatio(
-      -prevEl.scrollTop / (prevEl.scrollHeight - prevEl.clientHeight)
-    );
-    setPrevheight(prevEl.clientHeight);
+    setScroll({
+      thumbOnTrack: +(
+        ref.current.previousSibling.clientHeight /
+        ref.current.previousSibling.scrollHeight
+      ).toFixed(2),
+      scrolledRatio: Math.abs(
+        ref.current.previousSibling.scrollLeft /
+          (ref.current.previousSibling.scrollHeight -
+            ref.current.previousSibling.clientHeight)
+      ).toFixed(2),
+    });
 
-    prevEl.addEventListener("scroll", (e) => {
-      setThumRatio(+(e.target.clientHeight / e.target.scrollHeight));
-      setScrolledRatio(
-        +(-e.target.scrollTop / (e.target.scrollHeight - e.target.clientHeight))
-      );
-      setPrevheight(prevEl.clientHeight);
+    ref.current.previousSibling.addEventListener("scroll", (e) => {
+      setScroll({
+        thumbOnTrack: Number(
+          e.target.clientHeight / e.target.scrollHeight
+        ).toFixed(2),
+        scrolledRatio: Math.abs(
+          e.target.scrollTop / (e.target.scrollHeight - e.target.clientHeight)
+        ).toFixed(2),
+      });
     });
   }, []);
   return (
     <div
-      ref={barRef}
+      ref={ref}
       style={{
-        display: thumRatio >= 0.99 ? "none" : "block",
-        width: w,
+        display: thumbOnTrack <= 0.99 ? "block" : "none",
         height: h
           ? h
-          : prevHeight
-          ? barRef.current.previousSibling.clientHeight
-          : 0,
+          : ref.current
+          ? ref.current.previousSibling.clientHeight
+          : 90,
+        width: w,
         borderRadius: r,
         backgroundColor: trackColor,
-        overflow: "hidden",
       }}
     >
       <div
         style={{
-          width: w,
+          width: w ? w : 6,
           position: "relative",
           bottom: h
-            ? h * (1 - thumRatio) * scrolledRatio
-            : prevHeight && thumRatio
-            ? prevHeight * (1 - thumRatio) * scrolledRatio
-            : 0,
-
-          height: h ? h * thumRatio : prevHeight ? prevHeight * thumRatio : 0,
+            ? Number(h * (1 - thumbOnTrack) * scrolledRatio)
+            : ref.current && thumbOnTrack
+            ? Number(
+                ref.current.previousSibling.clientHeight *
+                  (1 - thumbOnTrack) *
+                  scrolledRatio
+              )
+            : 30,
+          height: h,
           borderRadius: r,
           backgroundColor: thumbColor,
         }}
       ></div>
     </div>
   );
-}
-ScrollbarY.propTypes = {
-  w: PropTypes.number,
-  h: PropTypes.number,
-  r: PropTypes.number,
-  thumbColor: PropTypes.string,
-  trackColor: PropTypes.string,
-};
-export default memo(ScrollbarY);
+});
+export default Container;
