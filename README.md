@@ -16,7 +16,7 @@ import { ScrollbarX } from "styled-scrollbar";
 
 ```js
 //parent element
-<ScrollbarX>
+<ScrollbarX h={3} w={95}>
   //element that is scrollable👇🏽
   <div>
     //...items in scrolled element
@@ -28,7 +28,7 @@ import { ScrollbarX } from "styled-scrollbar";
 ### Vertical scrollbar:
 
 ```js
-<ScrollbarY>
+<ScrollbarY w={4} h={300}>
   //element that is scrollable👇🏽
   <div>
     //...items in scrolled element
