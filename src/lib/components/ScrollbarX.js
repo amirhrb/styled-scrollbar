@@ -94,13 +94,5 @@ const Scrollbar = React.forwardRef((props, ref) => {
     </div>
   );
 });
+
 export default Container;
-
-/*
-/provider ref=ref
-
-  //scrolled-child
-  //scrollbar
-
-/provider
-*/

@@ -3,7 +3,7 @@
   "private": false,
   "version": "1.1.1",
   "description": "styled-scrollbar is a React library to make vertical and horizontal scrollbars look 'same' in different browsers.",
-  "author": "Your Name amirrabi70@gmail.com",
+  "author": "amirrabi70@gmail.com",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amirhrb/styled-scrollbar.git"
+    "url": "https://github.com/amirhrb/styled-scrollbar.git"
   },
   "keywords": [
     "scrollbar",
@@ -24,19 +24,10 @@
     "url": "https://github.com/amirhrb/styled-scrollbar/issues"
   },
   "homepage": "https://github.com/amirhrb/styled-scrollbar#readme",
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "del dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files",
+    "release": "npm run build && npm publish",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -45,6 +36,30 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "prop-types": "^15.8.1",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1"
   },
   "browserslist": {
     "production": [
@@ -57,13 +72,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.20.7",
-    "@babel/core": "^7.20.7",
-    "@babel/polyfill": "^7.12.1",
-    "@babel/preset-env": "^7.20.2",
-    "install": "^0.13.0",
-    "npm": "^9.2.0"
   }
 }

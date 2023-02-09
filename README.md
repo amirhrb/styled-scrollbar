@@ -5,8 +5,13 @@ styled-scrollbar helps you make customized(color, width, ...) scrollbars in reac
 
 ## Quick start
 
-First, run `npm install styled-scrollbar` for your app. Then, in an React app:
+First, run this command in your react app:
+```js
+npm install styled-scrollbar
+```
+for your app.
 
+Then:
 ```js
 import { ScrollbarX } from "styled-scrollbar";
 ```
