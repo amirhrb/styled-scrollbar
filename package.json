@@ -1,76 +1,48 @@
 {
   "name": "styled-scrollbar",
   "private": false,
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "styled-scrollbar is a React library to make vertical and horizontal scrollbars look 'same' in different browsers.",
   "author": "amirrabi70@gmail.com",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "main": "dist/index.js",
-  "module": "dist/index.js",
-  "files": [
-    "dist",
-    "README.md"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/amirhrb/styled-scrollbar.git"
   },
-  "keywords": [
-    "scrollbar",
-    "react",
-    "overflow"
-  ],
   "bugs": {
     "url": "https://github.com/amirhrb/styled-scrollbar/issues"
   },
   "homepage": "https://github.com/amirhrb/styled-scrollbar#readme",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "del dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files",
-    "release": "npm run build && npm publish",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "dependencies": {
-    "@babel/polyfill": "^7.12.1",
-    "prop-types": "^15.8.1",
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "build": "rollup -c",
+    "start": "rollup -c -w"
   },
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "react": ">= 16.8.0 < 2",
+    "react-dom": ">= 16.8.0 < 2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.20.7",
-    "@babel/core": "^7.20.12",
-    "@babel/preset-env": "^7.20.2",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1"
+    "@types/react": "^16.14.35",
+    "@types/react-dom": "^16.0.5",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "rollup": "^1.29.0",
+    "rollup-plugin-typescript2": "^0.25.3",
+    "typescript": "^2.8.3"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "scrollbar",
+    "react",
+    "overflow"
+  ]
 }
