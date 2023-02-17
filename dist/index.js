@@ -62,7 +62,7 @@ var ScrollbarX = function (_a) {
                     // console.log(err);
                     //   }
                 };
-                firstChild.addEventListener("scroll", handleScroll);
+                firstChild.addEventListener('scroll', handleScroll);
             }
             else {
                 console.log(firstChild);
@@ -74,30 +74,30 @@ var ScrollbarX = function (_a) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (React.createElement("div", { ref: containerRef, style: {
-            display: "flex",
-            flexDirection: "column",
+            display: 'flex',
+            flexDirection: 'column',
             // justifyContent: "space-evenly",
-            alignItems: "center",
+            alignItems: 'center',
         } },
         children,
         React.createElement("div", { style: {
-                display: thumbOnTrack <= 0.99 ? "block" : "none",
+                display: thumbOnTrack <= 0.99 ? 'block' : 'none',
                 width: props.w ? props.w : childWidth,
                 height: props.h ? props.h : 4,
                 borderRadius: props.r ? props.r : 2,
-                backgroundColor: props.trackColor ? props.trackColor : "#cecece",
+                backgroundColor: props.trackColor ? props.trackColor : '#cecece',
             } },
             React.createElement("div", { style: {
                     width: props.w ? props.w * thumbOnTrack : childWidth * thumbOnTrack,
-                    position: "relative",
-                    left: props.w
+                    position: 'relative',
+                    left: props.w && thumbOnTrack && scrolledRatio
                         ? +(props.w * (1 - thumbOnTrack) * scrolledRatio)
-                        : childWidth && thumbOnTrack
+                        : childWidth && thumbOnTrack && scrolledRatio
                             ? +(childWidth * (1 - thumbOnTrack) * scrolledRatio)
                             : 30,
                     height: props.h ? props.h : 4,
                     borderRadius: props.r ? props.r : 2,
-                    backgroundColor: props.thumbColor ? props.thumbColor : "#555",
+                    backgroundColor: props.thumbColor ? props.thumbColor : '#555',
                 } }))));
 };
 
@@ -128,7 +128,7 @@ var ScrollbarY = function (_a) {
                             (target.scrollHeight - target.clientHeight)),
                     });
                 };
-                firstChild.addEventListener("scroll", handleScroll);
+                firstChild.addEventListener('scroll', handleScroll);
             }
             else {
                 console.log(firstChild);
@@ -140,32 +140,32 @@ var ScrollbarY = function (_a) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (React.createElement("div", { ref: containerRef, style: {
-            display: "flex",
+            display: 'flex',
             // flexDirection: "column",
             // justifyContent: "space-evenly",
-            alignItems: "center",
+            alignItems: 'center',
         } },
         children,
         React.createElement("div", { style: {
-                display: thumbOnTrack <= 0.99 ? "block" : "none",
+                display: thumbOnTrack <= 0.99 ? 'block' : 'none',
                 height: props.h ? props.h : childHeight,
                 width: props.w ? props.w : 4,
                 borderRadius: props.r ? props.r : 2,
-                backgroundColor: props.trackColor ? props.trackColor : "#cecece",
+                backgroundColor: props.trackColor ? props.trackColor : '#cecece',
             } },
             React.createElement("div", { style: {
                     height: props.h
                         ? props.h * thumbOnTrack
                         : childHeight * thumbOnTrack,
-                    position: "relative",
-                    top: props.h
+                    position: 'relative',
+                    top: props.h && thumbOnTrack && scrolledRatio
                         ? +(props.h * (1 - thumbOnTrack) * scrolledRatio)
-                        : childHeight && thumbOnTrack
+                        : childHeight && thumbOnTrack && scrolledRatio
                             ? +(childHeight * (1 - thumbOnTrack) * scrolledRatio)
                             : 30,
                     width: props.w ? props.w : 4,
                     borderRadius: props.r ? props.r : 2,
-                    backgroundColor: props.thumbColor ? props.thumbColor : "#555",
+                    backgroundColor: props.thumbColor ? props.thumbColor : '#555',
                 } }))));
 };
 
