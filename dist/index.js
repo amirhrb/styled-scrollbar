@@ -90,9 +90,9 @@ var ScrollbarX = function (_a) {
             React.createElement("div", { style: {
                     width: props.w ? props.w * thumbOnTrack : childWidth * thumbOnTrack,
                     position: 'relative',
-                    left: props.w && thumbOnTrack && scrolledRatio
+                    left: props.w
                         ? +(props.w * (1 - thumbOnTrack) * scrolledRatio)
-                        : childWidth && thumbOnTrack && scrolledRatio
+                        : childWidth
                             ? +(childWidth * (1 - thumbOnTrack) * scrolledRatio)
                             : 30,
                     height: props.h ? props.h : 4,
@@ -158,9 +158,9 @@ var ScrollbarY = function (_a) {
                         ? props.h * thumbOnTrack
                         : childHeight * thumbOnTrack,
                     position: 'relative',
-                    top: props.h && thumbOnTrack && scrolledRatio
+                    top: props.h
                         ? +(props.h * (1 - thumbOnTrack) * scrolledRatio)
-                        : childHeight && thumbOnTrack && scrolledRatio
+                        : childHeight
                             ? +(childHeight * (1 - thumbOnTrack) * scrolledRatio)
                             : 30,
                     width: props.w ? props.w : 4,

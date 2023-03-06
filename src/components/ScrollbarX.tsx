@@ -86,12 +86,11 @@ const ScrollbarX: React.FC<Props> = ({ children, ...props }) => {
           style={{
             width: props.w ? props.w * thumbOnTrack : childWidth * thumbOnTrack,
             position: 'relative',
-            left:
-              props.w && thumbOnTrack && scrolledRatio
-                ? +(props.w * (1 - thumbOnTrack) * scrolledRatio)
-                : childWidth && thumbOnTrack && scrolledRatio
-                ? +(childWidth * (1 - thumbOnTrack) * scrolledRatio)
-                : 30,
+            left: props.w
+              ? +(props.w * (1 - thumbOnTrack) * scrolledRatio)
+              : childWidth
+              ? +(childWidth * (1 - thumbOnTrack) * scrolledRatio)
+              : 30,
             height: props.h ? props.h : 4,
             borderRadius: props.r ? props.r : 2,
             backgroundColor: props.thumbColor ? props.thumbColor : '#555',

@@ -83,12 +83,11 @@ const ScrollbarY: React.FC<Props> = ({ children, ...props }) => {
               : childHeight * thumbOnTrack,
 
             position: 'relative',
-            top:
-              props.h && thumbOnTrack && scrolledRatio
-                ? +(props.h * (1 - thumbOnTrack) * scrolledRatio)
-                : childHeight && thumbOnTrack && scrolledRatio
-                ? +(childHeight * (1 - thumbOnTrack) * scrolledRatio)
-                : 30,
+            top: props.h
+              ? +(props.h * (1 - thumbOnTrack) * scrolledRatio)
+              : childHeight
+              ? +(childHeight * (1 - thumbOnTrack) * scrolledRatio)
+              : 30,
             width: props.w ? props.w : 4,
             borderRadius: props.r ? props.r : 2,
             backgroundColor: props.thumbColor ? props.thumbColor : '#555',
