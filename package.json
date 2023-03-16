@@ -1,6 +1,6 @@
 {
   "name": "@amirhrb/styled-scrollbar",
-  "version": "1.0.2",
+  "version": "3.0.0",
   "description": "styled-scrollbar is a React library to make vertical and horizontal scrollbars look 'same' in different browsers.",
   "license": "Apache-2.0",
   "private": false,
