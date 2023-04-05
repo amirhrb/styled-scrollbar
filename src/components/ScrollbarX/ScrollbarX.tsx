@@ -1,5 +1,5 @@
-import * as React from "react";
-import { useRef, useEffect, useState } from "react";
+import * as React from 'react';
+import { useRef, useEffect, useState } from 'react';
 // import "../global.scss";
 
 interface Props {
@@ -24,38 +24,49 @@ const ScrollbarX: React.FC<Props> = ({ children, ...props }) => {
       childWidth: 0,
     });
   //   const [rtl, setRtl] = useState(false);
+  const handleScroll = (e: Event) => {
+    //   try {
+    const target = e.target as HTMLElement;
+    setScroll({
+      childWidth: target.clientWidth,
+      thumbOnTrack: +(target.clientWidth / target.scrollWidth),
+      scrolledRatio: +(
+        target.scrollLeft /
+        (target.scrollWidth - target.clientWidth)
+      ),
+    });
+    //   } catch (err) {
+    // console.log(err);
+    //   }
+  };
   useEffect(() => {
     // if (document.documentElement.dir === "rtl") setRtl(true);
     if (containerRef.current) {
       const firstChild = containerRef.current.firstChild;
       if (firstChild instanceof HTMLElement) {
-        setScroll({
-          thumbOnTrack: +(firstChild.clientWidth / firstChild.scrollWidth),
-          scrolledRatio: +(
-            firstChild.scrollTop /
-            (firstChild.scrollWidth - firstChild.clientWidth)
-          ),
-          childWidth: firstChild.clientWidth,
-        });
-        const handleScroll = (e: Event) => {
-          //   try {
-          const target = e.target as HTMLElement;
+        if (firstChild.scrollWidth > firstChild.clientWidth) {
           setScroll({
-            childWidth: target.clientWidth,
-            thumbOnTrack: +(target.clientWidth / target.scrollWidth),
+            thumbOnTrack: +(firstChild.clientWidth / firstChild.scrollWidth),
             scrolledRatio: +(
-              target.scrollLeft /
-              (target.scrollWidth - target.clientWidth)
+              firstChild.scrollTop /
+              (firstChild.scrollWidth - firstChild.clientWidth)
             ),
+            childWidth: firstChild.clientWidth,
           });
-          //   } catch (err) {
-          // console.log(err);
-          //   }
-        };
-        firstChild.addEventListener("scroll", handleScroll);
+          firstChild.addEventListener('scroll', handleScroll);
+        }
       }
     }
-
+    return () => {
+      if (containerRef.current) {
+        const firstChild = containerRef.current.firstChild;
+        if (firstChild instanceof HTMLElement) {
+          if (firstChild.scrollWidth > firstChild.clientWidth) {
+            firstChild.removeEventListener('scroll', handleScroll);
+          }
+        }
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -64,25 +75,25 @@ const ScrollbarX: React.FC<Props> = ({ children, ...props }) => {
       ref={containerRef}
       // className="scrollbar-parent-to-avoid-default"
       style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
       }}
     >
       {children}
       <div
         style={{
-          display: thumbOnTrack <= 0.99 ? "block" : "none",
+          display: thumbOnTrack <= 0.99 ? 'block' : 'none',
           width: props.w ? props.w : childWidth,
           height: props.h ? props.h : 4,
           borderRadius: props.r ? props.r : 2,
-          backgroundColor: props.trackColor ? props.trackColor : "#cecece",
+          backgroundColor: props.trackColor ? props.trackColor : '#cecece',
         }}
       >
         <div
           style={{
             width: props.w ? props.w * thumbOnTrack : childWidth * thumbOnTrack,
-            position: "relative",
+            position: 'relative',
             left: props.w
               ? +(props.w * (1 - thumbOnTrack) * scrolledRatio)
               : childWidth
@@ -90,7 +101,7 @@ const ScrollbarX: React.FC<Props> = ({ children, ...props }) => {
               : 30,
             height: props.h ? props.h : 4,
             borderRadius: props.r ? props.r : 2,
-            backgroundColor: props.thumbColor ? props.thumbColor : "#555",
+            backgroundColor: props.thumbColor ? props.thumbColor : '#555',
           }}
         ></div>
       </div>
