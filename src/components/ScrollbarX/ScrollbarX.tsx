@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useRef, useEffect, useState } from 'react';
-// import "../global.scss";
 
 interface Props {
   children: React.ReactNode;
@@ -9,6 +8,9 @@ interface Props {
   r?: number;
   thumbColor?: string;
   trackColor?: string;
+  wraperStyle?: object;
+  thumbStyle?: object;
+  trackStyle?: object;
 }
 interface States {
   scrolledRatio: number;
@@ -75,6 +77,7 @@ const ScrollbarX: React.FC<Props> = ({ children, ...props }) => {
       ref={containerRef}
       // className="scrollbar-parent-to-avoid-default"
       style={{
+        ...props.wraperStyle,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -83,6 +86,7 @@ const ScrollbarX: React.FC<Props> = ({ children, ...props }) => {
       {children}
       <div
         style={{
+          ...props.trackStyle,
           display: thumbOnTrack <= 0.99 ? 'block' : 'none',
           width: props.w ? props.w : childWidth,
           height: props.h ? props.h : 4,
@@ -92,6 +96,7 @@ const ScrollbarX: React.FC<Props> = ({ children, ...props }) => {
       >
         <div
           style={{
+            ...props.thumbStyle,
             width: props.w ? props.w * thumbOnTrack : childWidth * thumbOnTrack,
             position: 'relative',
             left: props.w

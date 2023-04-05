@@ -6,6 +6,9 @@ interface Props {
     r?: number;
     thumbColor?: string;
     trackColor?: string;
+    wraperStyle?: object;
+    thumbStyle?: object;
+    trackStyle?: object;
 }
 declare const ScrollbarY: React.FC<Props>;
 export default ScrollbarY;

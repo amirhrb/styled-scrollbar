@@ -53,13 +53,14 @@ components:
 ---
 # Component Props guide:
 
+
+----
 **color Props:**
 | Prop | default | data type | meaning|  
 | :------|:- | :------- | :-------
 | `trackColor`| ![#cecece](https://via.placeholder.com/10/cecece?text=+)`#cecece` | `string` | `color of scrollbar background` |
 | `thumbColor` | ![#555](https://via.placeholder.com/10/555?text=+)`#555` | `string` | `color of scrollbar thumb` |
 
----
 
 **size Props:**
 | Prop | data type | meaning |
@@ -67,12 +68,31 @@ components:
 | `w` | `number` | `width of scrollbar` |
 | `h` | `number` | `height of scrollbar` |
 | `r` | `number` | `borderRadius of scrollbar` |
-
----
+  
 
 | type         | default width | default height |default bRadius|
 | :----------- | :---------------- | :----------------- |:----------- |
 | `ScrollbarX`   | prevEl width | `6px`   | `2px`   |
 | `ScrollbarY`   | `6px`          | prevEl height |`2px` |
 
+## New update 3.0.2 :
+
+now  in version 3.0.2 you can give style for `wraper`, `track` and `thumb` by passing their own styles that you like not only the colors and sizes!
+
+| Prop | default | data type | meaning|  
+| :------|:- | :------- | :-------
+  `thumbStyle`| `{}` |`object`|styles applid on thumb of scrollbar
+  `trackStyle` | `{}` | `object`|styles applid on track of scrollbar
+  `wraperStyle`| `{}` | `object`|styles applid on wraper of scrollbar and scolling element
+
+  example:
+  -
+  ```js
+    <ScrollbarY
+        wraperStyle={{ display: 'flex', flexDirection: 'row-reverse' }}
+        trackStyle={{ margin: '0 5px' }}
+        >
+        ...
+    </ScrollbarY>
+   ```
 <!-- prettier-ignore-end -->

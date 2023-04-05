@@ -8,6 +8,9 @@ interface Props {
   r?: number;
   thumbColor?: string;
   trackColor?: string;
+  wraperStyle?: object;
+  thumbStyle?: object;
+  trackStyle?: object;
 }
 interface States {
   scrolledRatio: number;
@@ -67,14 +70,12 @@ const ScrollbarY: React.FC<Props> = ({ children, ...props }) => {
     <div
       ref={containerRef}
       // className="scrollbar-parent-to-avoid-default"
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-      }}
+      style={{ ...props.wraperStyle, display: 'flex', alignItems: 'center' }}
     >
       {children}
       <div
         style={{
+          ...props.trackStyle,
           display: thumbOnTrack <= 0.99 ? 'block' : 'none',
           height: props.h ? props.h : childHeight,
           width: props.w ? props.w : 4,
@@ -84,6 +85,7 @@ const ScrollbarY: React.FC<Props> = ({ children, ...props }) => {
       >
         <div
           style={{
+            ...props.thumbStyle,
             height: props.h
               ? props.h * thumbOnTrack
               : childHeight * thumbOnTrack,
